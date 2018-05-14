@@ -11,7 +11,7 @@ import model.employee.Employee;
 import model.expense.Expense;
 import model.product.*;
 import javafx.collections.ObservableList;
-import model.receipts.BuyReceipt;
+import model.receipts.GoodsReceipt;
 import model.receipts.ItemOrder;
 import model.receipts.SellReceipt;
 
@@ -50,7 +50,7 @@ public class DataManager {
     {
         readProductsFile();
         readSellReceiptsFile();
-        readBuyReceiptsFile();
+        readGoodsReceiptsFile();
         readExpensesFile();
         readEmployeesFile();
     }
@@ -59,7 +59,7 @@ public class DataManager {
     {
         writeProductsFile();
         writeSellReceiptsFile();
-        writeBuyReceiptsFile();
+        writeGoodsReceiptsFile();
         writeExpensesFile();
         writeEmployeesFile();
     }
@@ -117,7 +117,7 @@ public class DataManager {
 
     }
 
-    public void writeBuyReceiptsFile()
+    public void writeGoodsReceiptsFile()
     {
         //String comment = "# Category|productID|name|status|quantity|sellingPrice|buyingPrice|nation|imageURL|discount\n";
 
@@ -126,11 +126,11 @@ public class DataManager {
             FileWriter fileWriter = new FileWriter(file, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            ObservableList<BuyReceipt> listBuyReceipts = inventoryManager.getListBuyReceipts();
+            ObservableList<GoodsReceipt> listGoodsReceipts = inventoryManager.getListGoodsReceipts();
 
-            for(BuyReceipt buyReceipt: listBuyReceipts)
+            for(GoodsReceipt goodsReceipt : listGoodsReceipts)
             {
-                bufferedWriter.write(buyReceipt.toString());
+                bufferedWriter.write(goodsReceipt.toString());
                 bufferedWriter.write("\n");
             }
 
@@ -142,7 +142,7 @@ public class DataManager {
 
     }
 
-    private void readBuyReceiptsFile()
+    private void readGoodsReceiptsFile()
     {
         try {
             File file = new File(FinalPaths.DATA+"BuyReceipts.txt");
@@ -158,14 +158,14 @@ public class DataManager {
 
                 String[] parts = line.split(Pattern.quote("|"));
 
-                BuyReceipt buyReceipt = new BuyReceipt();
-                buyReceipt.setReceiptID(parts[0]);
-                buyReceipt.setCategory(Enum.valueOf(model.receipts.Category.class, parts[1]));
-                buyReceipt.setSupplierName(parts[2]);
-                buyReceipt.setPurchaserName(parts[3]);
-                buyReceipt.setTotalCost(Double.valueOf(parts[4]));
-                buyReceipt.setDate(LocalDate.parse(parts[5]));
-                buyReceipt.setRemark(App.asciiToString(parts[6]));
+                GoodsReceipt goodsReceipt = new GoodsReceipt();
+                goodsReceipt.setReceiptID(parts[0]);
+                goodsReceipt.setCategory(Enum.valueOf(model.receipts.Category.class, parts[1]));
+                goodsReceipt.setSupplierName(parts[2]);
+                goodsReceipt.setPurchaserName(parts[3]);
+                goodsReceipt.setTotalCost(Double.valueOf(parts[4]));
+                goodsReceipt.setDate(LocalDate.parse(parts[5]));
+                goodsReceipt.setRemark(App.asciiToString(parts[6]));
 
                 int nItems = Integer.valueOf(parts[7]);
                 for(int j = 0; j < nItems; j++)
@@ -177,10 +177,10 @@ public class DataManager {
                     String rawProduct = rawItem.substring(first + 1);
                     Product product = Product.valueOf(rawProduct);
 
-                    buyReceipt.getListItems().add(new ItemOrder(product, amount));
+                    goodsReceipt.getListItems().add(new ItemOrder(product, amount));
                 }
 
-                inventoryManager.addBuyReceipt(buyReceipt);
+                inventoryManager.addGoodsReceipt(goodsReceipt);
 
                 bufferedReader.readLine();
                 line = bufferedReader.readLine();

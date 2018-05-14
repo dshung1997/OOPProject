@@ -51,7 +51,7 @@
         </HBox>
         <HBox layoutY="50.0" prefHeight="650.0" prefWidth="1210.0" spacing="10.0">
             <children>
-                <TableView fx:id="buyReceiptsTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/table.css">
+                <TableView fx:id="goodsReceiptsTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/table.css">
                     <columns>
                         <TableColumn fx:id="receiptIDColumn" maxWidth="100.0" minWidth="85.0" prefWidth="85.0" resizable="false" text="Receipt ID" />
                         <TableColumn fx:id="dateColumn" maxWidth="300.0" minWidth="120.0" prefWidth="120.0" resizable="false" text="Purchase Date" />

@@ -6,10 +6,14 @@ public class FinalPaths {
     public static final String ICON = "/image/logoapp.png";
 
     // Main
+
+
     public static final String IMAGE = "src/main/resources/image/";
     public static final String DATA = "src/main/resources/data/";
 
     // JAR
+
+
 //    public static final String IMAGE = "resources/image/";
 //    public static final String DATA = "resources/data/";
     //-----------------------------TEXT-------------------------------

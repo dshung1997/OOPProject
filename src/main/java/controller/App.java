@@ -82,7 +82,7 @@ public class App extends Application {
 
         //System.out.println("default path:" + defaultPath);
 
-        File f1 = new File("src/main/resources/image/default.png");
+        File f1 = new File(FinalPaths.IMAGE+"default.png");
         defaultPath = f1.getAbsolutePath();
 
 //        System.out.println("default path:" + f1.getAbsolutePath());
@@ -199,7 +199,7 @@ public class App extends Application {
                 primaryStage.close();
 
         });
-        primaryStage.getIcons().add(new Image(App.class.getResourceAsStream("/image/logoapp.png")));
+        primaryStage.getIcons().add(new Image(App.class.getResourceAsStream(FinalPaths.ICON)));
         primaryStage.setScene(loginScene);
         primaryStage.setMaximized(false);
         primaryStage.setResizable(false);

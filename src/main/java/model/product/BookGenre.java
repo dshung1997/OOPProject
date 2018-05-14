@@ -24,7 +24,8 @@ public enum BookGenre {
     SHORT_STORY,
     THRILLER,
     TALL_TALE,
-    WESTERN
+    WESTERN,
+    SELF_HELP
 
 
 }

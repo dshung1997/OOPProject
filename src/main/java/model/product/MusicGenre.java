@@ -1,6 +1,7 @@
 package model.product;
 
 public enum MusicGenre {
+    POP,
     VPOP,
     KPOP,
     COUNTRY,
@@ -11,5 +12,6 @@ public enum MusicGenre {
     JAZZ,
     ROCK,
     LATIN,
+    BLUE,
     BLUES;
 }

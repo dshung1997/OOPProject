@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class UpdateProductController {
@@ -63,7 +64,7 @@ public class UpdateProductController {
         product = _product;
         mode = _mode;
 
-        currentImgUrl = App.defaultPath;
+        currentImgUrl = FinalPaths.IMAGE.concat(_product.getImageUrl());
 
         handleIdTextField();
         handleNameTextField();
@@ -413,16 +414,7 @@ public class UpdateProductController {
 
     private String saveImage(String sourcePath, String destPath) throws IOException {
 
-//        if(sourcePath.equals(App.defaultPath))
-//        {
-//            return "default.png";
-//        }
-
-//        File f = File.createTempFile("/image/destPath", "png");
-//        OutputStream f1 = new FileOutputStream(f);
-//        Files.copy(Paths.get(sourcePath), f1);
-//        f1.close();
-
+        if(sourcePath.equals(FinalPaths.IMAGE.concat(product.getImageUrl())) || sourcePath.contains(destPath)) return product.getImageUrl();
 
         String relativeImgUrl;
 
@@ -436,34 +428,12 @@ public class UpdateProductController {
         }
 
         relativeImgUrl = destPath;
-
-//        InputStream in = getClass().getResourceAsStream("/image/"+relativeImgUrl);
-//        BufferedWriter bw = new BufferedWriter(new InputStreamW);
-
         System.out.println(destPath);
 
-//    src/main/resources
         destPath = FinalPaths.IMAGE.concat(destPath);
-        //File f = File.createTempFile("/image/")
 
         OutputStream destFile = new FileOutputStream(destPath);
         Files.copy(Paths.get(sourcePath), destFile);
-
-//        OutputStream destFile1 = new FileOutputStream("out/artifacts/MediaOne_jar/MediaOne/image/"+relativeImgUrl);
-//        Files.copy(Paths.get(sourcePath), destFile1);
-//        getClass().getResourceAsStream("/image/"+product.getImageUrl()
-//
-//        File temp = new File(String.valueOf(System.class.getResource("/image/"+relativeImgUrl)));
-//        //image g =  new image(getClass().getResourceAsStream("/image/"+relativeImgUrl));
-//
-//        if(temp.createNewFile())
-//        {
-//            System.out.println("Ok created");
-//        }
-//        else System.out.println("failed created");
-//
-//        OutputStream destFile1 = new FileOutputStream(temp);
-//        Files.copy(Paths.get(sourcePath), destFile1);
 
         destFile.close();
 
